@@ -54,13 +54,13 @@ public class App {
         xpLvlStr = input.next();
         int experienceLevel = getExperienceLevel(xpLvlStr);
 
-        //get length of cycle
+        //get total length of macro cycle
         System.out.println("How far out are you from competition/max day?");
         distanceFromPeak = input.nextInt();
 
+        //declare new Program object and initialize the values for its properties
         Program program = new Program();
         program.setProgramValues(snatch, cleanAndJerk, backSquat, pushPress, experienceLevel, distanceFromPeak);
-
 
         //ratios between lift maxes, and how much volume each lift should get for the entire cycle
         double[] ratios = program.getRatios();
