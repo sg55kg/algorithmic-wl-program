@@ -33,6 +33,7 @@ public class App {
     }
 
     public static void main(String[] args) {
+        //declare variables
         Scanner input = new Scanner(System.in);
         double snatch, cleanAndJerk, backSquat, pushPress;
         String xpLvlStr;
@@ -61,25 +62,29 @@ public class App {
         program.setProgramValues(snatch, cleanAndJerk, backSquat, pushPress, experienceLevel, distanceFromPeak);
 
 
-
+        //ratios between lift maxes, and how much volume each lift should get for the entire cycle
         double[] ratios = program.getRatios();
+        double[] volumePercentages = program.getVolumePercentages(ratios);
 
+        //how long should each phase of training be
         List<Integer> monthLengths = program.getMonthLengths(distanceFromPeak);
 
+        //get reps for the entire macrocycle
         double[] allCycleReps = program.getCycleReps(monthLengths, experienceLevel);
 
+        //get total reps for each individual month
         double hypertrophyPhaseReps = allCycleReps[0];
         double strengthPhaseReps = allCycleReps[1];
         double powerPhaseReps = allCycleReps[2];
         double peakPhaseReps = allCycleReps[3];
 
-        double[] volumePercentages = program.getVolumePercentages(ratios);
-
+        //divide total reps into different exercise groups
         double[] hyperTrophyPhaseVolume = program.getMonthlyVolume(volumePercentages, hypertrophyPhaseReps);
         double[] strengthPhaseVolume = program.getMonthlyVolume(volumePercentages, strengthPhaseReps);
         double[] powerPhaseVolume = program.getMonthlyVolume(volumePercentages, powerPhaseReps);
         double[] peakingPhaseVolume = program.getMonthlyVolume(volumePercentages, peakPhaseReps);
 
+        //print result
         printMonthlyVolume(hyperTrophyPhaseVolume);
         printMonthlyVolume(strengthPhaseVolume);
         printMonthlyVolume(powerPhaseVolume);
