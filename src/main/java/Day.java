@@ -1,6 +1,6 @@
 public class Day {
 
-    String snatchVariation, cJVariation, squatVariation, upperVariation, accessory;
+    String snatchExercise, cJExercise, squatExercise, upperExercise, accessory;
 
     //Could possibly make this a Week class instead, and have days be an array or Map of 'day' objects. Depending on if it's
     // 3-6 days a week it would fill the week with the day objects and then distribute the exercises/reps/weight based on

@@ -1,4 +1,8 @@
-import java.util.Arrays;
+//import java.io.File;
+//import java.io.FileWriter;
+//import java.io.IOException;
+//import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -9,6 +13,7 @@ public class App {
     public static final double fourthMonthReps = 400;
 
     public static void printMonthlyVolume(double[] arr) {
+
         System.out.println("Volume for the month:");
         System.out.println("Total snatch reps: " + Math.ceil(arr[0]));
         System.out.println("Total clean and jerk reps: " + Math.ceil(arr[1]));
@@ -58,14 +63,22 @@ public class App {
 
 
         double[] ratios = program.getRatios();
-        System.out.println(ratios[0]);
+
+        List<Integer> monthLengths = program.getMonthLengths(distanceFromPeak);
+
+        double[] allCycleReps = program.getCycleReps(monthLengths, experienceLevel);
+
+        double hypertrophyPhaseReps = allCycleReps[0];
+        double strengthPhaseReps = allCycleReps[1];
+        double powerPhaseReps = allCycleReps[2];
+        double peakPhaseReps = allCycleReps[3];
 
         double[] volumePercentages = program.getVolumePercentages(ratios);
 
-        double[] hyperTrophyPhaseVolume = program.getMonthlyVolume(volumePercentages, firstMonthReps);
-        double[] strengthPhaseVolume = program.getMonthlyVolume(volumePercentages, secondMonthReps);
-        double[] powerPhaseVolume = program.getMonthlyVolume(volumePercentages, thirdMonthReps);
-        double[] peakingPhaseVolume = program.getMonthlyVolume(volumePercentages, fourthMonthReps);
+        double[] hyperTrophyPhaseVolume = program.getMonthlyVolume(volumePercentages, hypertrophyPhaseReps);
+        double[] strengthPhaseVolume = program.getMonthlyVolume(volumePercentages, strengthPhaseReps);
+        double[] powerPhaseVolume = program.getMonthlyVolume(volumePercentages, powerPhaseReps);
+        double[] peakingPhaseVolume = program.getMonthlyVolume(volumePercentages, peakPhaseReps);
 
         printMonthlyVolume(hyperTrophyPhaseVolume);
         printMonthlyVolume(strengthPhaseVolume);
