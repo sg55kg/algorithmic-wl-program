@@ -7,11 +7,6 @@ import java.util.Scanner;
 
 public class App {
 
-    public static final double firstMonthReps = 1000;
-    public static final double secondMonthReps = 800;
-    public static final double thirdMonthReps = 600;
-    public static final double fourthMonthReps = 400;
-
     public static void printMonthlyVolume(double[] arr) {
 
         System.out.println("Volume for the month:");
@@ -54,8 +49,8 @@ public class App {
         xpLvlStr = input.next();
         int experienceLevel = getExperienceLevel(xpLvlStr);
 
-        //get total length of macro cycle
-        System.out.println("How far out are you from competition/max day?");
+        //get total length of macrocycle
+        System.out.println("How many weeks out are you from competition/max day?");
         distanceFromPeak = input.nextInt();
 
         //declare new Program object and initialize the values for its properties
