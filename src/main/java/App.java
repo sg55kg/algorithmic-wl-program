@@ -62,10 +62,10 @@ public class App {
         double[] volumePercentages = program.getVolumePercentages(ratios);
 
         //how long should each phase of training be
-        List<Integer> monthLengths = program.getMonthLengths(distanceFromPeak);
+        List<Integer> monthLengths = program.getMonthLengths();
 
         //get reps for the entire macrocycle
-        double[] allCycleReps = program.getCycleReps(monthLengths, experienceLevel);
+        double[] allCycleReps = program.getCycleReps(monthLengths);
 
         //get total reps for each individual month
         double hypertrophyPhaseReps = allCycleReps[0];

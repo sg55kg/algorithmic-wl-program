@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 public class Week {
 
     protected int numberOfDays;
     protected int weekType; //deload week, top week, etc
     protected int weekVolume; //reps per week
+    protected ArrayList<Day> days;
 
     public void setNumberOfDays(int numberOfDays) {
         this.numberOfDays = numberOfDays;
