@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Month {
+public class Month extends Program {
 
     protected int monthLength; //number of weeks in a new month object
     protected int monthType; //hypertrophy, strength, peak, etc
