@@ -8,6 +8,7 @@ adjust the weekly/daily parts of the program based on user feedback (recovery, p
 etc.)
 
 # To do:
--Restructure the Program class. In order to output more specific programs, the data will need to be passed down from 
-the program object into the month/week/day/exercise objects. Currently, all the methods are in the program class, and it
-is getting pretty messy.
+-The program class has been restructured, and now work needs to be done on passing information from the month objects to
+their individual week objects. Now the ratios between the lifts will need to start fitting into the picture in order to 
+determine not only total volume, but also how specifically what percentage of the total volume will go to each exercise
+type.
