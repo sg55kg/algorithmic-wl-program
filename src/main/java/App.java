@@ -58,6 +58,9 @@ public class App {
 
         program.setLiftNumbers(snatch, cleanAndJerk, backSquat, pushPress);
         program.setXpLvl(experienceLevel);
-        program.setTotalCycleLength(experienceLevel);
+        program.setTotalCycleLength(distanceFromPeak);
+        program.setNumberOfMonths(); //this seems like an awkward way to do this and there's probably a better way
+        System.out.println("Number of months: " + program.getNumberOfMonths());
+        program.addMonthsToList();
     }
 }

@@ -3,7 +3,7 @@ import java.util.*;
 public class Program {
 
     protected double snatch, cleanAndJerk, backSquat, pushPress;
-    protected int xpLvl, totalCycleLength;
+    protected int xpLvl, totalCycleLength, numberOfMonths;
     protected List<Month> months = new ArrayList<>();
 
     public void setLiftNumbers(double snatch, double cleanAndJerk, double backSquat, double pushPress) {
@@ -21,37 +21,37 @@ public class Program {
         this.totalCycleLength = totalCycleLength;
     }
 
-    public List<Integer> setMonthLengths() {
-        int cycleLength = this.totalCycleLength;
-        List<Integer> monthLengths = new ArrayList<>();
+    public void setNumberOfMonths() {
 
-        while(cycleLength > 0) {
-            if (cycleLength > 12) {
-                int hypertrophyCycleLength = cycleLength - 12;
-                monthLengths.add(hypertrophyCycleLength);
-                cycleLength = 12;
-            } else if (cycleLength > 8) {
-                int strengthCycleLength = cycleLength - 8;
-                monthLengths.add(strengthCycleLength);
-                cycleLength = 8;
-            } else if (cycleLength > 4) {
-                int powerCycleLength = cycleLength - 4;
-                monthLengths.add(powerCycleLength);
-                cycleLength = 4;
-            } else if (cycleLength > 0) {
-                int peakCycleLength = cycleLength;
-                monthLengths.add(peakCycleLength);
-                cycleLength = 0;
-            }
-        }
-        return monthLengths;
+        if(this.totalCycleLength > 12) {
+            this.numberOfMonths = 4;
+        } else if(this.totalCycleLength > 8) {
+            this.numberOfMonths = 3;
+        } else if(this.totalCycleLength > 4) {
+            this.numberOfMonths = 2;
+        } else if(this.totalCycleLength > 0) {
+            this.numberOfMonths = 1;
+        } else this.numberOfMonths = 0;
     }
 
-    public void addMonth(List<Integer> monthLengths) {
-        for (int monthLength : monthLengths) {
-            Month month = new Month();
-            month.setMonthLength(monthLength);
+    public int getNumberOfMonths() {
+        return numberOfMonths;
+    }
+
+    //dynamically add months to the List and set their types/lengths
+    public void addMonthsToList() {
+        int cycleLength = this.totalCycleLength;
+        int monthType = 0, monthLength, subtractWeeks = 12;
+
+        while(cycleLength > 0) {
+            monthLength = cycleLength - subtractWeeks;
+            Month month = new Month(monthType, monthLength, this.xpLvl);
             this.months.add(month);
+            cycleLength = subtractWeeks;
+            subtractWeeks -= 4;
+            monthType++;
+            System.out.println(month);
+            System.out.println(month.getMonthLength());
         }
     }
 }
