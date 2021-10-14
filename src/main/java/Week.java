@@ -15,7 +15,7 @@ public class Week {
         this.setParentMonthSize(parentMonthSize);
         this.determineWeekVolume();
 
-        System.out.println("Reps for this week: " + this.weekVolume + " reps");
+        System.out.println("Reps for this week: " + this.weekVolume + " reps\n");
     }
 
     public void determineWeekVolume() {

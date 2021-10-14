@@ -47,12 +47,37 @@ public class Program {
         this.liftRatios = ratios;
     }
 
+    public int setInitMonthTypeValue() {
+        int monthType;
+        if (this.totalCycleLength > 12) {
+            return monthType = 0;
+        } else if (this.totalCycleLength > 8) {
+            return monthType = 1;
+        } else if (this.totalCycleLength > 4) {
+            return monthType = 2;
+        } else return monthType = 3;
+    }
+
+    public int setInitSubTractWeeksValue() {
+        int subtractWeeks;
+        if(this.totalCycleLength > 12) {
+            return subtractWeeks = 12;
+        } else if (this.totalCycleLength > 8) {
+            return subtractWeeks = 8;
+        } else if (this.totalCycleLength > 4) {
+            return subtractWeeks = 4;
+        } else return subtractWeeks = 0;
+    }
+
     //dynamically add months to the List and set their types/lengths
     public void addMonthsToList() {
         int cycleLength = this.totalCycleLength;
-        int monthType = 0, monthLength, subtractWeeks = 12;
+        int monthType = setInitMonthTypeValue(),
+                monthLength,
+                subtractWeeks = setInitSubTractWeeksValue();
 
         while(cycleLength > 0) {
+
             monthLength = cycleLength - subtractWeeks;
             Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios, this.daysPerWeek);
             this.months.add(month);

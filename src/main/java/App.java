@@ -7,17 +7,6 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void printMonthlyVolume(double[] arr) {
-
-        System.out.println("Volume for the month:");
-        System.out.println("Total snatch reps: " + Math.ceil(arr[0]));
-        System.out.println("Total clean and jerk reps: " + Math.ceil(arr[1]));
-        System.out.println("Total squat reps: " + Math.ceil(arr[2]));
-        System.out.println("Total press/push press reps: " + Math.ceil(arr[3]));
-        System.out.println("Total accessory reps: " + (Math.ceil(arr[4])));
-        System.out.println(" ");
-    }
-
     public static int getExperienceLevel(String s) {
         return switch (s.toUpperCase()) {
             case ("BEGINNER") -> 0;
