@@ -3,8 +3,17 @@ import java.util.*;
 public class Program {
 
     protected double snatch, cleanAndJerk, backSquat, pushPress;
-    protected int xpLvl, totalCycleLength, numberOfMonths;
+    protected double[] liftRatios;
+    protected int xpLvl, totalCycleLength;
     protected List<Month> months = new ArrayList<>();
+
+    public Program(double snatch, double cleanAndJerk, double backSquat, double pushPress, int xpLvl, int totalCycleLength) {
+        this.setLiftNumbers(snatch, cleanAndJerk, backSquat, pushPress);
+        this.setLiftRatios(snatch, cleanAndJerk, backSquat, pushPress);
+        this.setXpLvl(xpLvl);
+        this.setTotalCycleLength(totalCycleLength);
+        this.addMonthsToList();
+    }
 
     public void setLiftNumbers(double snatch, double cleanAndJerk, double backSquat, double pushPress) {
         this.snatch = snatch;
@@ -13,29 +22,24 @@ public class Program {
         this.pushPress = pushPress;
     }
 
-    public void setXpLvl(int xpLvl) {
-        this.xpLvl = xpLvl;
-    }
+    public void setXpLvl(int xpLvl) { this.xpLvl = xpLvl; }
 
     public void setTotalCycleLength(int totalCycleLength) {
         this.totalCycleLength = totalCycleLength;
     }
 
-    public void setNumberOfMonths() {
+    public void setLiftRatios(double snatch, double cleanAndJerk, double backSquat, double pushPress) {
+        double[] ratios = new double[3];
 
-        if(this.totalCycleLength > 12) {
-            this.numberOfMonths = 4;
-        } else if(this.totalCycleLength > 8) {
-            this.numberOfMonths = 3;
-        } else if(this.totalCycleLength > 4) {
-            this.numberOfMonths = 2;
-        } else if(this.totalCycleLength > 0) {
-            this.numberOfMonths = 1;
-        } else this.numberOfMonths = 0;
-    }
+        double snatchToCleanAndJerk = snatch / cleanAndJerk;
+        double cleanAndJerkToSquat = cleanAndJerk / backSquat;
+        double pushPressToCleanAndJerk = pushPress / cleanAndJerk;
 
-    public int getNumberOfMonths() {
-        return numberOfMonths;
+        ratios[0] = snatchToCleanAndJerk;
+        ratios[1] = cleanAndJerkToSquat;
+        ratios[2] = pushPressToCleanAndJerk;
+
+        this.liftRatios = ratios;
     }
 
     //dynamically add months to the List and set their types/lengths
@@ -45,13 +49,12 @@ public class Program {
 
         while(cycleLength > 0) {
             monthLength = cycleLength - subtractWeeks;
-            Month month = new Month(monthType, monthLength, this.xpLvl);
+            Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios);
             this.months.add(month);
+
             cycleLength = subtractWeeks;
             subtractWeeks -= 4;
             monthType++;
-            System.out.println(month);
-            System.out.println(month.getMonthLength());
         }
     }
 }

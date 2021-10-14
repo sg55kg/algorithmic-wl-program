@@ -1,21 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Month extends Program {
+public class Month {
 
     protected int monthLength; //number of weeks in a new month object
     protected int monthType; //hypertrophy, strength, peak, etc
     protected int xpLvl;
+    protected double[] liftRatios;
     protected double monthVolume; //overall reps?
-    protected double[] ratios;
     protected ArrayList<Week> weeks;
 
-    public Month(int monthType, int monthLength, int xpLvl) {
+    public Month(int monthType, int monthLength, int xpLvl, double[] ratios) {
         this.setMonthType(monthType);
         this.setMonthLength(monthLength);
         this.setXpLvl(xpLvl);
+        this.setLiftRatios(ratios);
         this.determineMonthVolume(this.monthLength);
         System.out.println("Volume for this month: " + this.getMonthVolume());
+        System.out.println("Weeks in this month: " + this.getMonthLength());
+        System.out.println("Type of month: " + this.getMonthType());
     }
 
     public void setMonthLength(int monthLength) {
@@ -33,6 +36,14 @@ public class Month extends Program {
 
     public int getMonthType() {
         return monthType;
+    }
+
+    public void setXpLvl(int xpLvl) { this.xpLvl = xpLvl; }
+
+    public void setLiftRatios(double[] ratios) { this.liftRatios = ratios; }
+
+    public double[] getLiftRatios() {
+        return liftRatios;
     }
 
     public void setMonthVolume(double monthVolume) { this.monthVolume = monthVolume; }
@@ -82,19 +93,6 @@ public class Month extends Program {
         }
     }
 
-    public void setXpLvl(int xpLvl) {
-        this.xpLvl = xpLvl;
-    }
+    public int getXpLvl() { return xpLvl; }
 
-    public int getXpLvl() {
-        return xpLvl;
-    }
-
-    public void setRatios(double[] ratios) {
-        this.ratios = ratios;
-    }
-
-    public double[] getRatios() {
-        return ratios;
-    }
 }

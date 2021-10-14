@@ -53,14 +53,7 @@ public class App {
         System.out.println("How many weeks out are you from competition/max day?");
         distanceFromPeak = input.nextInt();
 
-
-        Program program = new Program();
-
-        program.setLiftNumbers(snatch, cleanAndJerk, backSquat, pushPress);
-        program.setXpLvl(experienceLevel);
-        program.setTotalCycleLength(distanceFromPeak);
-        program.setNumberOfMonths(); //this seems like an awkward way to do this and there's probably a better way
-        System.out.println("Number of months: " + program.getNumberOfMonths());
-        program.addMonthsToList();
+        //init new program with user input values
+        Program program = new Program(snatch, cleanAndJerk, backSquat, pushPress, experienceLevel, distanceFromPeak);
     }
 }
