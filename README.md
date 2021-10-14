@@ -8,7 +8,9 @@ adjust the weekly/daily parts of the program based on user feedback (recovery, p
 etc.)
 
 # To do:
--The program class has been restructured, and now work needs to be done on passing information from the month objects to
-their individual week objects. Now the ratios between the lifts will need to start fitting into the picture in order to 
-determine not only total volume, but also how specifically what percentage of the total volume will go to each exercise
-type.
+-Weeks now divide up the total monthly(micro-cycle) volume, and now the week class needs a way to create individual days,
+which will further divide up the volume amongst themselves.
+
+Right now a lot of code is being rewritten between classes, and it would be more efficient for the child objects to 
+inherit certain methods and values from their parent object to get rid of the redundant code. Once I get the days 
+splitting up volume properly, I will go back and rework how the classes are set up.
