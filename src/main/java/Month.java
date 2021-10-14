@@ -6,19 +6,24 @@ public class Month {
     protected int monthLength; //number of weeks in a new month object
     protected int monthType; //hypertrophy, strength, peak, etc
     protected int xpLvl;
+    protected int daysPerWeek;
     protected double[] liftRatios;
     protected double monthVolume; //overall reps?
-    protected ArrayList<Week> weeks;
+    protected ArrayList<Week> weeks = new ArrayList<>();
 
-    public Month(int monthType, int monthLength, int xpLvl, double[] ratios) {
+    public Month(int monthType, int monthLength, int xpLvl, double[] ratios, int daysPerWeek) {
         this.setMonthType(monthType);
         this.setMonthLength(monthLength);
         this.setXpLvl(xpLvl);
         this.setLiftRatios(ratios);
+        this.setDaysPerWeek(daysPerWeek);
         this.determineMonthVolume(this.monthLength);
+
         System.out.println("Volume for this month: " + this.getMonthVolume());
         System.out.println("Weeks in this month: " + this.getMonthLength());
         System.out.println("Type of month: " + this.getMonthType());
+
+        this.createWeeks();
     }
 
     public void setMonthLength(int monthLength) {
@@ -49,6 +54,10 @@ public class Month {
     public void setMonthVolume(double monthVolume) { this.monthVolume = monthVolume; }
 
     public double getMonthVolume() { return monthVolume; }
+
+    public void setDaysPerWeek(int daysPerWeek) {
+        this.daysPerWeek = daysPerWeek;
+    }
 
     public void determineMonthVolume(int monthLength) {
         if (this.monthType == 0) {
@@ -93,6 +102,13 @@ public class Month {
         }
     }
 
-    public int getXpLvl() { return xpLvl; }
+    public void createWeeks() {
+        int weekType = 0;
+        for(int i = 0; i < monthLength; i++) {
+            Week week = new Week(weekType, this.daysPerWeek, this.monthVolume, this.monthLength);
+            weeks.add(week);
+            weekType++;
+        }
+    }
 
 }

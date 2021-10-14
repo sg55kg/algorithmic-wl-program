@@ -32,7 +32,7 @@ public class App {
         Scanner input = new Scanner(System.in);
         double snatch, cleanAndJerk, backSquat, pushPress;
         String xpLvlStr;
-        int distanceFromPeak;
+        int distanceFromPeak, daysPerWeek;
 
         //get max sn/cj/bs/pp
         System.out.println("Enter max snatch:");
@@ -53,7 +53,12 @@ public class App {
         System.out.println("How many weeks out are you from competition/max day?");
         distanceFromPeak = input.nextInt();
 
+        //get number of days per week user will train
+        System.out.println("How many days per week will you train?");
+        daysPerWeek = input.nextInt();
+
         //init new program with user input values
-        Program program = new Program(snatch, cleanAndJerk, backSquat, pushPress, experienceLevel, distanceFromPeak);
+        Program program = new Program
+                (snatch, cleanAndJerk, backSquat, pushPress, experienceLevel, distanceFromPeak, daysPerWeek);
     }
 }

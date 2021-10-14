@@ -4,14 +4,15 @@ public class Program {
 
     protected double snatch, cleanAndJerk, backSquat, pushPress;
     protected double[] liftRatios;
-    protected int xpLvl, totalCycleLength;
+    protected int xpLvl, totalCycleLength, daysPerWeek;
     protected List<Month> months = new ArrayList<>();
 
-    public Program(double snatch, double cleanAndJerk, double backSquat, double pushPress, int xpLvl, int totalCycleLength) {
+    public Program(double snatch, double cleanAndJerk, double backSquat, double pushPress, int xpLvl, int totalCycleLength, int daysPerWeek) {
         this.setLiftNumbers(snatch, cleanAndJerk, backSquat, pushPress);
         this.setLiftRatios(snatch, cleanAndJerk, backSquat, pushPress);
         this.setXpLvl(xpLvl);
         this.setTotalCycleLength(totalCycleLength);
+        this.setDaysPerWeek(daysPerWeek);
         this.addMonthsToList();
     }
 
@@ -26,6 +27,10 @@ public class Program {
 
     public void setTotalCycleLength(int totalCycleLength) {
         this.totalCycleLength = totalCycleLength;
+    }
+
+    public void setDaysPerWeek(int daysPerWeek) {
+        this.daysPerWeek = daysPerWeek;
     }
 
     public void setLiftRatios(double snatch, double cleanAndJerk, double backSquat, double pushPress) {
@@ -49,7 +54,7 @@ public class Program {
 
         while(cycleLength > 0) {
             monthLength = cycleLength - subtractWeeks;
-            Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios);
+            Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios, this.daysPerWeek);
             this.months.add(month);
 
             cycleLength = subtractWeeks;
