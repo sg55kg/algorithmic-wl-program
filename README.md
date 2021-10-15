@@ -14,3 +14,5 @@ which will further divide up the volume amongst themselves.
 Right now a lot of code is being rewritten between classes, and it would be more efficient for the child objects to 
 inherit certain methods and values from their parent object to get rid of the redundant code. Once I get the days 
 splitting up volume properly, I will go back and rework how the classes are set up.
+
+Also adding enum classes would help keep track of types of months/weeks/days, as well as experience level.

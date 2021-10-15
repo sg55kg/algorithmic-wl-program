@@ -47,6 +47,7 @@ public class Program {
         this.liftRatios = ratios;
     }
 
+    //set initial values for addMonthToList function
     public int setInitMonthTypeValue() {
         int monthType;
         if (this.totalCycleLength > 12) {

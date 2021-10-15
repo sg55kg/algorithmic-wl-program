@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Week {
 
     protected int numberOfDays;
-    protected int weekType;//deload week, top week, etc
+    protected int weekType; //deload week, top week, etc
     protected int parentMonthSize;
     protected double weekVolume, totalVolume; //reps per week and overall
-    protected ArrayList<Day> days;
+    protected ArrayList<Day> days = new ArrayList<>();
 
     public Week(int weekType, int numberOfDays, double totalVolume, int parentMonthSize) {
         this.setWeekType(weekType);
@@ -15,7 +15,7 @@ public class Week {
         this.setParentMonthSize(parentMonthSize);
         this.determineWeekVolume();
 
-        System.out.println("Reps for this week: " + this.weekVolume + " reps\n");
+        System.out.println("Reps for this week: " + this.weekVolume + " reps");
     }
 
     public void determineWeekVolume() {
@@ -93,5 +93,9 @@ public class Week {
 
     public void setParentMonthSize(int parentMonthSize) {
         this.parentMonthSize = parentMonthSize;
+    }
+
+    public void setDays(int numberOfDays, int weekType) {
+        //only solution I see for now is logical branch based on number of days and week type.
     }
 }
