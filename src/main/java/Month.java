@@ -1,27 +1,25 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Month {
+public class Month extends Program {
 
     protected int monthLength; //number of weeks in a new month object
     protected int monthType; //hypertrophy, strength, peak, etc
     protected int xpLvl;
-    protected int daysPerWeek;
-    protected double[] liftRatios;
     protected double monthVolume; //overall reps?
     protected ArrayList<Week> weeks = new ArrayList<>();
 
     public Month() {
-
+        super();
+        this.monthLength = 4;
+        this.monthType = 0;
     }
 
-    public Month(int monthType, int monthLength, int xpLvl, double[] ratios, int daysPerWeek) {
+    public Month(int monthType, int monthLength, int daysPerWeek) {
         this.setMonthType(monthType);
         this.setMonthLength(monthLength);
-        this.setXpLvl(xpLvl);
-        this.setLiftRatios(ratios);
-        this.setDaysPerWeek(daysPerWeek);
-        this.determineMonthVolume(this.monthLength);
+        this.daysPerWeek = daysPerWeek;
+        this.determineMonthVolume();
 
         System.out.println("Volume for this month: " + this.getMonthVolume());
         System.out.println("Weeks in this month: " + this.getMonthLength());
@@ -30,13 +28,10 @@ public class Month {
         this.createWeeks();
     }
 
-    public void setMonthLength(int monthLength) {
-
-        this.monthLength = monthLength;
-    }
+    public void setMonthLength(int monthLength) { this.monthLength = monthLength; }
 
     public int getMonthLength() {
-        return monthLength;
+        return this.monthLength;
     }
 
     public void setMonthType(int monthType) {
@@ -44,28 +39,24 @@ public class Month {
     }
 
     public int getMonthType() {
-        return monthType;
+        return this.monthType;
     }
 
     public void setXpLvl(int xpLvl) { this.xpLvl = xpLvl; }
 
-    public void setLiftRatios(double[] ratios) { this.liftRatios = ratios; }
-
     public double[] getLiftRatios() {
-        return liftRatios;
+        return this.liftRatios;
     }
 
     public void setMonthVolume(double monthVolume) { this.monthVolume = monthVolume; }
 
     public double getMonthVolume() { return monthVolume; }
 
-    public void setDaysPerWeek(int daysPerWeek) {
-        this.daysPerWeek = daysPerWeek;
-    }
+    public int getDaysPerWeek() { return this.daysPerWeek; }
 
-    public void determineMonthVolume(int monthLength) {
-        if (this.monthType == 0) {
-            switch (this.xpLvl) {
+    public void determineMonthVolume() {
+        if (monthType == 0) {
+            switch (xpLvl) {
                 case 0: setMonthVolume(200 * monthLength);
                     break;
                 case 1: setMonthVolume(225 * monthLength);
@@ -74,8 +65,8 @@ public class Month {
                     break;
             }
         }
-        else if (this.monthType == 1) {
-            switch (this.xpLvl) {
+        else if (monthType == 1) {
+            switch (xpLvl) {
                 case 0: setMonthVolume(187.5 * monthLength);
                     break;
                 case 1: setMonthVolume(212.5 * monthLength);
@@ -84,8 +75,8 @@ public class Month {
                     break;
             }
         }
-        else if (this.monthType == 2) {
-            switch (this.xpLvl) {
+        else if (monthType == 2) {
+            switch (xpLvl) {
                 case 0: setMonthVolume(175 * monthLength);
                     break;
                 case 1: setMonthVolume(187.5 * monthLength);
@@ -94,8 +85,8 @@ public class Month {
                     break;
             }
         }
-        else if (this.monthType == 3) {
-            switch (this.xpLvl) {
+        else if (monthType == 3) {
+            switch (xpLvl) {
                 case 0: setMonthVolume(150 * monthLength);
                     break;
                 case 1: setMonthVolume(162.5 * monthLength);

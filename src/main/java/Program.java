@@ -8,7 +8,8 @@ public class Program {
     protected List<Month> months = new ArrayList<>();
 
     public Program() {
-
+        this.xpLvl = 0;
+        this.daysPerWeek = 4;
     }
 
     public Program(double snatch, double cleanAndJerk, double backSquat, double pushPress, int xpLvl, int totalCycleLength, int daysPerWeek) {
@@ -17,7 +18,7 @@ public class Program {
         this.setXpLvl(xpLvl);
         this.setTotalCycleLength(totalCycleLength);
         this.setDaysPerWeek(daysPerWeek);
-        this.addMonthsToList();
+        this.createMonths();
     }
 
     public void setLiftNumbers(double snatch, double cleanAndJerk, double backSquat, double pushPress) {
@@ -29,8 +30,15 @@ public class Program {
 
     public void setXpLvl(int xpLvl) { this.xpLvl = xpLvl; }
 
-    public void setTotalCycleLength(int totalCycleLength) {
-        this.totalCycleLength = totalCycleLength;
+    public void setTotalCycleLength(int totalCycleLength) throws IllegalArgumentException {
+        if (totalCycleLength <= 16)
+            this.totalCycleLength = totalCycleLength;
+        else
+            throw new IllegalArgumentException("Must be a number between 0-16");
+    }
+
+    public int getTotalCycleLength() {
+        return totalCycleLength;
     }
 
     public void setDaysPerWeek(int daysPerWeek) {
@@ -75,7 +83,7 @@ public class Program {
     }
 
     //dynamically add months to the List and set their types/lengths
-    public void addMonthsToList() {
+    public void createMonths() {
         int cycleLength = this.totalCycleLength;
         int monthLength, subtractWeeks = setInitSubTractWeeksValue();
 
@@ -83,8 +91,11 @@ public class Program {
 
             monthLength = cycleLength - subtractWeeks;
             int monthType = setMonthTypeValue(cycleLength);
-            Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios, this.daysPerWeek);
+            Month month = new Month(monthType, monthLength, this.daysPerWeek);
+            month.setLiftNumbers(this.snatch, this.cleanAndJerk, this.backSquat, this.pushPress);
             this.months.add(month);
+            //instead of declaring all of these inside this loop, seperate methods could be made to loop through months
+            //in the months list, and set all of these values for each one (except for month type, length, and daysper
 
             cycleLength = subtractWeeks;
             subtractWeeks -= 4;

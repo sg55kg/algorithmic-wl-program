@@ -24,10 +24,19 @@ class ProgramTest {
     }
 
     @Test
-    void addMonthsToList() {
+    void testAddMonthsToListAddsTheCorrectNumberOfMonths() {
         program.setTotalCycleLength(12);
-        program.addMonthsToList();
+        program.createMonths();
         int months = program.months.size();
         assertEquals(3, months);
+    }
+
+    @Test
+    void testSetTotalCycleLengthThrowsException() {
+        Program program = new Program();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+           program.setTotalCycleLength(17);
+        });
+        System.out.println("Exception thrown " + exception);
     }
 }
