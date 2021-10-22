@@ -7,6 +7,10 @@ public class Program {
     protected int xpLvl, totalCycleLength, daysPerWeek;
     protected List<Month> months = new ArrayList<>();
 
+    public Program() {
+
+    }
+
     public Program(double snatch, double cleanAndJerk, double backSquat, double pushPress, int xpLvl, int totalCycleLength, int daysPerWeek) {
         this.setLiftNumbers(snatch, cleanAndJerk, backSquat, pushPress);
         this.setLiftRatios(snatch, cleanAndJerk, backSquat, pushPress);
@@ -48,13 +52,13 @@ public class Program {
     }
 
     //set initial values for addMonthToList function
-    public int setInitMonthTypeValue() {
+    public int setMonthTypeValue(int cycleLength) {
         int monthType;
-        if (this.totalCycleLength > 12) {
+        if (cycleLength > 12) {
             return monthType = 0;
-        } else if (this.totalCycleLength > 8) {
+        } else if (cycleLength > 8) {
             return monthType = 1;
-        } else if (this.totalCycleLength > 4) {
+        } else if (cycleLength > 4) {
             return monthType = 2;
         } else return monthType = 3;
     }
@@ -73,19 +77,17 @@ public class Program {
     //dynamically add months to the List and set their types/lengths
     public void addMonthsToList() {
         int cycleLength = this.totalCycleLength;
-        int monthType = setInitMonthTypeValue(),
-                monthLength,
-                subtractWeeks = setInitSubTractWeeksValue();
+        int monthLength, subtractWeeks = setInitSubTractWeeksValue();
 
         while(cycleLength > 0) {
 
             monthLength = cycleLength - subtractWeeks;
+            int monthType = setMonthTypeValue(cycleLength);
             Month month = new Month(monthType, monthLength, this.xpLvl, this.liftRatios, this.daysPerWeek);
             this.months.add(month);
 
             cycleLength = subtractWeeks;
             subtractWeeks -= 4;
-            monthType++;
         }
     }
 }

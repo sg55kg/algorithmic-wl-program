@@ -11,6 +11,10 @@ public class Month {
     protected double monthVolume; //overall reps?
     protected ArrayList<Week> weeks = new ArrayList<>();
 
+    public Month() {
+
+    }
+
     public Month(int monthType, int monthLength, int xpLvl, double[] ratios, int daysPerWeek) {
         this.setMonthType(monthType);
         this.setMonthLength(monthLength);

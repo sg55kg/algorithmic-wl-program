@@ -2,16 +2,18 @@ import java.util.ArrayList;
 
 public class Day {
 
-    protected int dayType, numberOfDays, dayOrder;
+    protected int dayType, numberOfDays, dayOrder, weekType;
     protected double totalDayVolume, parentWeekVolume;
     protected double[] liftRatios;
     protected ArrayList<Exercise> exercises = new ArrayList<>();
 
-    public Day(int dayOrder, double parentWeekVolume, double[] liftRatios, int numberOfDays) {
+    public Day(int dayOrder, double parentWeekVolume, int numberOfDays, int weekType) {
         this.dayOrder = dayOrder;
-        this.liftRatios = liftRatios;
         this.numberOfDays = numberOfDays;
+        this.parentWeekVolume = parentWeekVolume;
+        this.weekType = weekType;
         this.setDayType(dayOrder, numberOfDays);
+        System.out.println("Day type: " + this.dayType);
     }
 
     public void setDayType(int dayOrder, int numberOfDays) {
@@ -28,7 +30,7 @@ public class Day {
              else
                 this.dayType = 1;
 
-        } else if (dayOrder == 3) {
+        } else if (dayOrder == 2) {
             if (numberOfDays == 3)
                 this.dayType = 0;
              else if (numberOfDays == 4)
@@ -36,13 +38,13 @@ public class Day {
              else
                 this.dayType = 1;
 
-        } else if (dayOrder == 4) {
+        } else if (dayOrder == 3) {
             if (numberOfDays == 4)
                 this.dayType = 0;
              else
                 this.dayType = 2;
 
-        } else if (dayOrder == 5) {
+        } else if (dayOrder == 4) {
             if (numberOfDays == 5)
                 this.dayType = 2;
              else
@@ -50,5 +52,13 @@ public class Day {
         } else {
             this.dayType = 1;
         }
+    }
+
+    public int getDayType() {
+        return dayType;
+    }
+
+    public void setTotalDayVolume(double totalDayVolume) {
+        this.totalDayVolume = totalDayVolume;
     }
 }

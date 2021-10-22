@@ -16,6 +16,8 @@ public class Week {
         this.determineWeekVolume();
 
         System.out.println("Reps for this week: " + this.weekVolume + " reps");
+
+        this.setDays(numberOfDays, weekType);
     }
 
     public void determineWeekVolume() {
@@ -96,6 +98,20 @@ public class Week {
     }
 
     public void setDays(int numberOfDays, int weekType) {
-        //only solution I see for now is logical branch based on number of days and week type.
+        int i = 0;
+        int dayOrder = 0;
+        while (i < numberOfDays) {
+            Day day = new Day(dayOrder, this.weekVolume, this.numberOfDays, weekType);
+            dayOrder++;
+            i++;
+        }
+    }
+
+    public void setDayVolumes(ArrayList<Day> days, double weekVolume) {
+        for (Day day : days) {
+            if (day.getDayType() == 0) {
+                
+            }
+        }
     }
 }
