@@ -29,6 +29,12 @@ class ProgramTest {
         program.createMonths();
         int months = program.months.size();
         assertEquals(3, months);
+
+        Program program2 = new Program();
+        program2.setTotalCycleLength(5);
+        program2.createMonths();
+        int months2 = program2.months.size();
+        assertEquals(2, months2);
     }
 
     @Test

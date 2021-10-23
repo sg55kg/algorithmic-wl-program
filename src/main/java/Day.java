@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Day {
+public class Day extends Week {
 
     protected int dayType, numberOfDays, dayOrder, weekType;
     protected double totalDayVolume, parentWeekVolume;
@@ -13,7 +13,6 @@ public class Day {
         this.parentWeekVolume = parentWeekVolume;
         this.weekType = weekType;
         this.setDayType(dayOrder, numberOfDays);
-        System.out.println("Day type: " + this.dayType);
     }
 
     public void setDayType(int dayOrder, int numberOfDays) {
@@ -60,5 +59,9 @@ public class Day {
 
     public void setTotalDayVolume(double totalDayVolume) {
         this.totalDayVolume = totalDayVolume;
+    }
+
+    public double getTotalDayVolume() {
+        return totalDayVolume;
     }
 }

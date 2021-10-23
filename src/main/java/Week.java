@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Week {
+public class Week extends Month {
 
     protected int numberOfDays;
     protected int weekType; //deload week, top week, etc
@@ -8,15 +8,16 @@ public class Week {
     protected double weekVolume, totalVolume; //reps per week and overall
     protected ArrayList<Day> days = new ArrayList<>();
 
+    public Week() {
+        super();
+    }
+
     public Week(int weekType, int numberOfDays, double totalVolume, int parentMonthSize) {
         this.setWeekType(weekType);
         this.setNumberOfDays(numberOfDays);
         this.setTotalVolume(totalVolume);
         this.setParentMonthSize(parentMonthSize);
         this.determineWeekVolume();
-
-        System.out.println("Reps for this week: " + this.weekVolume + " reps");
-
         this.setDays(numberOfDays, weekType);
     }
 
@@ -65,6 +66,18 @@ public class Week {
         }
     }
 
+    public void createDays() {
+        int daysPerWeek = getDaysPerWeek();
+        double weekVolume = getWeekVolume();
+        int weekType = getWeekType();
+
+        for(int i = 0; i < daysPerWeek; i++) {
+            int dayOrder = i;
+            Day day = new Day(dayOrder, weekVolume, daysPerWeek, weekType);
+            days.add(day);
+        }
+    }
+
     public void setNumberOfDays(int numberOfDays) {
         this.numberOfDays = numberOfDays;
     }
@@ -108,9 +121,19 @@ public class Week {
     }
 
     public void setDayVolumes(ArrayList<Day> days, double weekVolume) {
+        double dayVolume;
+        int daysPerWeek = getDaysPerWeek();
+        //0 - hard day, 1 - med day, 2 - easy day
         for (Day day : days) {
             if (day.getDayType() == 0) {
-                
+                dayVolume = weekVolume * (.40 - (.05 * daysPerWeek));
+                day.setTotalDayVolume(dayVolume);
+            } else if (day.getDayType() == 1) {
+                dayVolume = weekVolume * (.45 - (.025 * daysPerWeek));
+                day.setTotalDayVolume(dayVolume);
+            } else {
+                dayVolume = weekVolume * (.225 - (.025 * daysPerWeek));
+                day.setTotalDayVolume(dayVolume);
             }
         }
     }
