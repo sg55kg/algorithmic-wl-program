@@ -1,50 +1,53 @@
 import java.util.ArrayList;
 
-public class Day extends Week {
+public class Day {
 
-    protected int dayType, numberOfDays, dayOrder, weekType;
+    protected int dayType, daysPerWeek, dayOrder, weekType;
     protected double totalDayVolume, parentWeekVolume;
     protected double[] liftRatios;
     protected ArrayList<Exercise> exercises = new ArrayList<>();
 
-    public Day(int dayOrder, double parentWeekVolume, int numberOfDays, int weekType) {
+    public Day(int dayOrder, double parentWeekVolume, int daysPerWeek, int weekType) {
         this.dayOrder = dayOrder;
-        this.numberOfDays = numberOfDays;
+        this.daysPerWeek = daysPerWeek;
         this.parentWeekVolume = parentWeekVolume;
         this.weekType = weekType;
-        this.setDayType(dayOrder, numberOfDays);
+        this.setDayType();
     }
 
-    public void setDayType(int dayOrder, int numberOfDays) {
+    public void setDayType() {
         //0 type day = heavy, 1 type = medium, 2 type = easy
+        int dayOrder = getDayOrder();
+        int daysPerWeek = getDaysPerWeek();
+
         if (dayOrder == 0) {
-            if (numberOfDays > 5)
+            if (daysPerWeek > 5)
                 this.dayType = 0;
              else
                 this.dayType = 1;
 
         } else if (dayOrder == 1) {
-            if (numberOfDays > 4)
+            if (daysPerWeek > 4)
                 this.dayType = 2;
              else
                 this.dayType = 1;
 
         } else if (dayOrder == 2) {
-            if (numberOfDays == 3)
+            if (daysPerWeek == 3)
                 this.dayType = 0;
-             else if (numberOfDays == 4)
+             else if (daysPerWeek == 4)
                 this.dayType = 2;
              else
                 this.dayType = 1;
 
         } else if (dayOrder == 3) {
-            if (numberOfDays == 4)
+            if (daysPerWeek == 4)
                 this.dayType = 0;
              else
                 this.dayType = 2;
 
         } else if (dayOrder == 4) {
-            if (numberOfDays == 5)
+            if (daysPerWeek == 5)
                 this.dayType = 2;
              else
                 this.dayType = 0;
@@ -63,5 +66,13 @@ public class Day extends Week {
 
     public double getTotalDayVolume() {
         return totalDayVolume;
+    }
+
+    public int getDayOrder() {
+        return dayOrder;
+    }
+
+    public int getDaysPerWeek() {
+        return daysPerWeek;
     }
 }

@@ -1,89 +1,91 @@
 import java.util.ArrayList;
 
-public class Week extends Month {
+public class Week {
 
-    protected int numberOfDays;
     protected int weekType; //deload week, top week, etc
     protected int parentMonthSize;
-    protected double weekVolume, totalVolume; //reps per week and overall
+    protected int daysPerWeek;
+    protected double weekVolume, parentMonthVolume; //reps per week and overall
     protected ArrayList<Day> days = new ArrayList<>();
 
     public Week() {
         super();
     }
 
-    public Week(int weekType, int numberOfDays, double totalVolume, int parentMonthSize) {
+    public Week(int weekType, int daysPerWeek, double parentMonthVolume, int parentMonthSize) {
         this.setWeekType(weekType);
-        this.setNumberOfDays(numberOfDays);
-        this.setTotalVolume(totalVolume);
+        this.daysPerWeek = daysPerWeek;
+        this.parentMonthVolume = parentMonthVolume;
         this.setParentMonthSize(parentMonthSize);
         this.determineWeekVolume();
-        this.setDays(numberOfDays, weekType);
+        this.createDays();
     }
 
     public void determineWeekVolume() {
         if(this.parentMonthSize == 4) {
             switch (this.weekType) {
                 case 0:
-                    setWeekVolume(this.totalVolume * .275);
+                    setWeekVolume(this.parentMonthVolume * .275);
                     break;
                 case 1:
-                    setWeekVolume(this.totalVolume * .325);
+                    setWeekVolume(this.parentMonthVolume * .325);
                     break;
                 case 2:
-                    setWeekVolume(this.totalVolume * .20);
+                    setWeekVolume(this.parentMonthVolume * .20);
                     break;
                 case 3:
-                    setWeekVolume(this.totalVolume * .225);
+                    setWeekVolume(this.parentMonthVolume * .225);
                     break;
             }
         }
         else if(this.parentMonthSize == 3) {
             switch (this.weekType) {
                 case 0:
-                    setWeekVolume(this.totalVolume * .275);
+                    setWeekVolume(this.parentMonthVolume * .275);
                     break;
                 case 1:
-                    setWeekVolume(this.totalVolume * .35);
+                    setWeekVolume(this.parentMonthVolume * .35);
                     break;
                 case 2:
-                    setWeekVolume(this.totalVolume * .375);
+                    setWeekVolume(this.parentMonthVolume * .375);
                     break;
             }
         }
         else if(this.parentMonthSize == 2) {
             switch (this.weekType) {
                 case 0:
-                    setWeekVolume(this.totalVolume * .45);
+                    setWeekVolume(this.parentMonthVolume * .45);
                     break;
                 case 1:
-                    setWeekVolume(this.totalVolume * .55);
+                    setWeekVolume(this.parentMonthVolume * .55);
                     break;
             }
         }
         else {
-            setWeekVolume(this.totalVolume);
+            setWeekVolume(this.parentMonthVolume);
         }
     }
 
     public void createDays() {
         int daysPerWeek = getDaysPerWeek();
+        System.out.println(daysPerWeek);
         double weekVolume = getWeekVolume();
         int weekType = getWeekType();
+        int dayOrder = 0;
 
         for(int i = 0; i < daysPerWeek; i++) {
-            int dayOrder = i;
             Day day = new Day(dayOrder, weekVolume, daysPerWeek, weekType);
             days.add(day);
+            dayOrder++;
         }
     }
 
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
+    public void setDaysPerWeek(int daysPerWeek) {
+        this.daysPerWeek = daysPerWeek;
     }
 
-    public int getNumberOfDays() {
-        return numberOfDays;
+    public int getDaysPerWeek() {
+        return daysPerWeek;
     }
 
     public void setWeekType(int weekType) {
@@ -102,37 +104,28 @@ public class Week extends Month {
         return weekVolume;
     }
 
-    public void setTotalVolume(double totalVolume) {
-        this.totalVolume = totalVolume;
-    }
-
     public void setParentMonthSize(int parentMonthSize) {
         this.parentMonthSize = parentMonthSize;
     }
 
-    public void setDays(int numberOfDays, int weekType) {
-        int i = 0;
-        int dayOrder = 0;
-        while (i < numberOfDays) {
-            Day day = new Day(dayOrder, this.weekVolume, this.numberOfDays, weekType);
-            dayOrder++;
-            i++;
-        }
-    }
-
-    public void setDayVolumes(ArrayList<Day> days, double weekVolume) {
+    public void setDayVolumes(ArrayList<Day> days) {
         double dayVolume;
+        double weekVolume = this.weekVolume;
         int daysPerWeek = getDaysPerWeek();
         //0 - hard day, 1 - med day, 2 - easy day
         for (Day day : days) {
             if (day.getDayType() == 0) {
-                dayVolume = weekVolume * (.40 - (.05 * daysPerWeek));
+                dayVolume = Math.floor(weekVolume * (.40 - (.05 * (daysPerWeek - 1))));
                 day.setTotalDayVolume(dayVolume);
             } else if (day.getDayType() == 1) {
-                dayVolume = weekVolume * (.45 - (.025 * daysPerWeek));
+                if (daysPerWeek == 6) {
+                    dayVolume = Math.floor(weekVolume * .25);
+                } else {
+                    dayVolume = Math.floor(weekVolume * (.40 - (.025 * (daysPerWeek - 1))));
+                }
                 day.setTotalDayVolume(dayVolume);
             } else {
-                dayVolume = weekVolume * (.225 - (.025 * daysPerWeek));
+                dayVolume = Math.floor(weekVolume * (.225 - (.025 * (daysPerWeek - 1))));
                 day.setTotalDayVolume(dayVolume);
             }
         }
