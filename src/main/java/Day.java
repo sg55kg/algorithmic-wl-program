@@ -56,6 +56,10 @@ public class Day {
         }
     }
 
+    public void printDayInfo() {
+        System.out.println("Day: " + (dayOrder + 1) + " Type: " + getDayType() + " Reps: " + getTotalDayVolume());
+    }
+
     public int getDayType() {
         return dayType;
     }
