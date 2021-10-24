@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Month extends Program {
+public class Month extends Programmable {
 
     protected int monthLength; //number of weeks in a new month object
     protected int monthType; //hypertrophy, strength, peak, etc
-    protected int xpLvl;
     protected double monthVolume; //overall reps?
     protected ArrayList<Week> weeks = new ArrayList<>();
 
@@ -16,8 +15,8 @@ public class Month extends Program {
     }
 
     public Month(int monthType, int monthLength, int daysPerWeek) {
-        this.setMonthType(monthType);
-        this.setMonthLength(monthLength);
+        this.monthType = monthType;
+        this.monthLength = monthLength;
         this.daysPerWeek = daysPerWeek;
         this.determineMonthVolume();
 
@@ -28,31 +27,25 @@ public class Month extends Program {
         this.createWeeks();
     }
 
-    public void setMonthLength(int monthLength) { this.monthLength = monthLength; }
-
     public int getMonthLength() {
         return this.monthLength;
-    }
-
-    public void setMonthType(int monthType) {
-        this.monthType = monthType;
     }
 
     public int getMonthType() {
         return this.monthType;
     }
 
-    public void setXpLvl(int xpLvl) { this.xpLvl = xpLvl; }
-
-    public double[] getLiftRatios() {
-        return this.liftRatios;
-    }
-
     public void setMonthVolume(double monthVolume) { this.monthVolume = monthVolume; }
 
-    public double getMonthVolume() { return monthVolume; }
+    public void setMonthLength(int monthLength) {
+        this.monthLength = monthLength;
+    }
 
-    public int getDaysPerWeek() { return this.daysPerWeek; }
+    public void setMonthType(int monthType) {
+        this.monthType = monthType;
+    }
+
+    public double getMonthVolume() { return monthVolume; }
 
     public void determineMonthVolume() {
         if (monthType == 0) {

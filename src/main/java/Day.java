@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class Day {
+public class Day extends Programmable {
 
-    protected int dayType, daysPerWeek, dayOrder, weekType;
+    protected int dayType, dayOrder, weekType;
     protected double totalDayVolume, parentWeekVolume;
-    protected double[] liftRatios;
     protected ArrayList<Exercise> exercises = new ArrayList<>();
 
     public Day(int dayOrder, double parentWeekVolume, int daysPerWeek, int weekType) {
@@ -74,9 +73,5 @@ public class Day {
 
     public int getDayOrder() {
         return dayOrder;
-    }
-
-    public int getDaysPerWeek() {
-        return daysPerWeek;
     }
 }

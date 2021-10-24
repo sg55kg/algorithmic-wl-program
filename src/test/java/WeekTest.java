@@ -23,8 +23,8 @@ class WeekTest {
     @Test
     void testCreateDaysGivesCorrectDayOrder() {
         Week week = new Week(1, 3, 500, 4);
+        int dayOrder = 0;
         for (Day day : week.days) {
-            int dayOrder = 0;
             assertEquals(dayOrder, day.dayOrder);
             dayOrder++;
         }

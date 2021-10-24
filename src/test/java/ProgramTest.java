@@ -12,16 +12,17 @@ class ProgramTest {
     }
 
     @Test
-    void setLiftRatios() {
+    void testSetLiftRatios() {
+        program .setLiftNumbers(100, 125, 160, 100);
+        program.setLiftRatios();
+        double[] actual = program.getLiftRatios();
+        double[] expected = { 0.8, 0.78, 0.8 };
+
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
     }
 
-    @Test
-    void setMonthTypeValue() {
-    }
-
-    @Test
-    void setInitSubTractWeeksValue() {
-    }
 
     @Test
     void testAddMonthsToListAddsTheCorrectNumberOfMonths() {

@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-public class Week {
+public class Week extends Programmable {
 
     protected int weekType; //deload week, top week, etc
     protected int parentMonthSize;
-    protected int daysPerWeek;
     protected double weekVolume, parentMonthVolume; //reps per week and overall
     protected ArrayList<Day> days = new ArrayList<>();
 
@@ -13,7 +12,7 @@ public class Week {
     }
 
     public Week(int weekType, int daysPerWeek, double parentMonthVolume, int parentMonthSize) {
-        this.setWeekType(weekType);
+        this.weekType = weekType;
         this.daysPerWeek = daysPerWeek;
         this.parentMonthVolume = parentMonthVolume;
         this.setParentMonthSize(parentMonthSize);
@@ -113,14 +112,6 @@ public class Week {
         for (Day day : this.days) {
             System.out.println("Day: " + (day.dayOrder + 1) + " Type: " + day.getDayType() + " Reps: " + day.getTotalDayVolume());
         }
-    }
-
-    public void setDaysPerWeek(int daysPerWeek) {
-        this.daysPerWeek = daysPerWeek;
-    }
-
-    public int getDaysPerWeek() {
-        return daysPerWeek;
     }
 
     public void setWeekType(int weekType) {
